@@ -3,10 +3,28 @@ import { Movie } from "./movies";
 
 interface DesidersPhaseProps {
   winnersFromNinthPhase: Record<number, Movie>;
+  losersFromFirstPhase: Record<number, Movie>;
+  losersFromSecondPhase: Record<number, Movie>;
+  losersFromThirdPhase: Record<number, Movie>;
+  losersFromFourthPhase: Record<number, Movie>;
+  losersFromFifthPhase: Record<number, Movie>;
+  losersFromSixthPhase: Record<number, Movie>;
+  losersFromSeventhPhase: Record<number, Movie>;
+  losersFromEighthPhase: Record<number, Movie>;
+  losersFromNinthPhase: Record<number, Movie>;
 }
 
 export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
   winnersFromNinthPhase,
+  losersFromFirstPhase,
+  losersFromSecondPhase,
+  losersFromThirdPhase,
+  losersFromFourthPhase,
+  losersFromFifthPhase,
+  losersFromSixthPhase,
+  losersFromSeventhPhase,
+  losersFromEighthPhase,
+  losersFromNinthPhase,
 }) => {
   const [availableMovies, setAvailableMovies] = useState<Record<number, Movie>>(
     { ...winnersFromNinthPhase }
@@ -275,7 +293,6 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
             key={key}
             style={{
               width: "23%",
-              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "5px",
               overflow: "hidden",
@@ -312,7 +329,6 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
             key={key}
             style={{
               width: "23%",
-              cursor: "pointer",
               border: "2px solid black",
               borderRadius: "5px",
               overflow: "hidden",
@@ -325,6 +341,285 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
               alt={movie.name}
               style={{ width: "100%", height: "auto" }}
             />
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>17-24 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromNinthPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>25-36 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromEighthPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>37-48 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromSeventhPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>49-64 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromSixthPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>65-84 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromFifthPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>85-108 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromFourthPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>109-140 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromThirdPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>141-180 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromSecondPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
+            <div style={{ padding: "10px", fontSize: "16px" }}>
+              {movie.name}
+            </div>
+          </div>
+        ))}
+      </div>
+      <div>181-232 место</div>
+      <div
+        style={{
+          marginBottom: "20px",
+          marginTop: "20px",
+          fontSize: "18px",
+          textAlign: "center",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-around",
+          flexWrap: "wrap",
+        }}
+      >
+        {Object.entries(losersFromFirstPhase).map(([key, movie]) => (
+          <div
+            key={key}
+            style={{
+              width: "23%",
+              border: "2px solid black",
+              borderRadius: "5px",
+              overflow: "hidden",
+              textAlign: "center",
+              backgroundColor: "#f0f0f0",
+            }}
+          >
             <div style={{ padding: "10px", fontSize: "16px" }}>
               {movie.name}
             </div>

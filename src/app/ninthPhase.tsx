@@ -120,6 +120,17 @@ export const NinthPhase: React.FC<NinthPhaseProps> = ({
       </div>
     </div>
   ) : (
-    <DesidersPhase winnersFromNinthPhase={winners} />
+    <DesidersPhase
+      winnersFromNinthPhase={winners}
+      losersFromFirstPhase={losersFromFirstPhase}
+      losersFromSecondPhase={losersFromSecondPhase}
+      losersFromThirdPhase={losersFromThirdPhase}
+      losersFromFourthPhase={losersFromFourthPhase}
+      losersFromFifthPhase={losersFromFifthPhase}
+      losersFromSixthPhase={losersFromSixthPhase}
+      losersFromSeventhPhase={losersFromSeventhPhase}
+      losersFromEighthPhase={losersFromEighthPhase}
+      losersFromNinthPhase={losers}
+    />
   );
 };
