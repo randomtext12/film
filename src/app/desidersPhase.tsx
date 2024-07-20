@@ -152,7 +152,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
                   )
                 }
                 style={{
-                  width: "26%",
+                  width: "23%",
                   cursor: "pointer",
                   border: "2px solid black",
                   borderRadius: "5px",
