@@ -140,7 +140,8 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Выберите 1 фильм для спасения:
+        Раунд завершён! Выберите 1 фильм, который вы спасете(он перейдет в
+        следующий раунд):
       </div>
       <div
         style={{

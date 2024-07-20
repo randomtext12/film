@@ -122,7 +122,8 @@ export const FirstPhase: React.FC = () => {
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Выберите 6 фильмов для спасения:
+        Раунд завершён! Выберите 6 фильмов, которые вы спасете(они перейдут в
+        следующий раунд):
       </div>
       <div
         style={{

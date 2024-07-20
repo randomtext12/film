@@ -134,7 +134,8 @@ export const ThirdPhase: React.FC<ThirdPhaseProps> = ({
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Выберите 3 фильма для спасения:
+        Раунд завершён! Выберите 3 фильма, которые вы спасете(они перейдут в
+        следующий раунд):
       </div>
       <div
         style={{

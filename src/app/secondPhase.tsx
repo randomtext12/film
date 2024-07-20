@@ -131,7 +131,8 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Выберите 5 фильмов для спасения:
+        Раунд завершён! Выберите 5 фильмов, которые вы спасете(они перейдут в
+        следующий раунд):
       </div>
       <div
         style={{

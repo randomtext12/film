@@ -275,7 +275,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         </div>
       </div>
-      <div>4-8 место</div>
+      <div>4-8 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -311,7 +311,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>9-16 место</div>
+      <div>9-16 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -347,7 +347,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>17-24 место</div>
+      <div>17-24 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -378,7 +378,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>25-36 место</div>
+      <div>25-36 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -409,7 +409,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>37-48 место</div>
+      <div>37-48 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -440,7 +440,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>49-64 место</div>
+      <div>49-64 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -471,7 +471,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>65-84 место</div>
+      <div>65-84 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -502,7 +502,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>85-108 место</div>
+      <div>85-108 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -533,7 +533,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>109-140 место</div>
+      <div>109-140 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -564,7 +564,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>141-180 место</div>
+      <div>141-180 место:</div>
       <div
         style={{
           marginBottom: "20px",
@@ -595,7 +595,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           </div>
         ))}
       </div>
-      <div>181-232 место</div>
+      <div>181-232 место:</div>
       <div
         style={{
           marginBottom: "20px",
