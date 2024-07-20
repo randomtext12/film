@@ -8,7 +8,7 @@ export const MainScreen: React.FC = () => {
   return !testStarted ? (
     <div style={divOneStyle}>
       <div onClick={startTest} style={textStyle}>
-        Начать тест
+        Нажмите чтобы начать тест
       </div>
     </div>
   ) : (
