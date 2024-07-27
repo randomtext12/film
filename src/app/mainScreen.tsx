@@ -15,8 +15,17 @@ export const MainScreen: React.FC = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
+  const handleKeyPress = (
+    event: React.KeyboardEvent<HTMLDivElement | HTMLInputElement>
+  ) => {
+    if (event.key === "Enter" && inputValue !== "") {
+      startTest();
+    }
+  };
   return !testStarted ? (
     <div
+      onKeyDown={handleKeyPress}
+      tabIndex={0}
       style={{
         display: "flex",
         flexDirection: "column",
