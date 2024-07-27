@@ -6,7 +6,9 @@ export const MainScreen: React.FC = () => {
   const [checkbox, setCheckbox] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<string>("");
   const startTest = () => {
-    setTestStarted(true);
+    if (inputValue !== "") {
+      setTestStarted(true);
+    }
   };
   const handleCheckbox = () => {
     setCheckbox((prev) => !prev);
@@ -37,7 +39,7 @@ export const MainScreen: React.FC = () => {
           paddingLeft: "20px",
           paddingRight: "20px",
           marginBottom: "20px",
-          cursor: "pointer",
+          cursor: inputValue !== "" ? "pointer" : "default",
         }}
       >
         Нажмите, чтобы начать первый раунд
