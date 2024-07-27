@@ -1,53 +1,63 @@
 import React, { useEffect, useState } from "react";
-import { Movie } from "./movies";
+import { Movie, MOVIES16 } from "./movies";
+import { StatisticPhase } from "./statisticPhase";
 
 interface DesidersPhaseProps {
-  winnersFromNinthPhase: Record<number, Movie>;
-  losersFromFirstPhase: Record<number, Movie>;
-  losersFromSecondPhase: Record<number, Movie>;
-  losersFromThirdPhase: Record<number, Movie>;
-  losersFromFourthPhase: Record<number, Movie>;
-  losersFromFifthPhase: Record<number, Movie>;
-  losersFromSixthPhase: Record<number, Movie>;
-  losersFromSeventhPhase: Record<number, Movie>;
-  losersFromEighthPhase: Record<number, Movie>;
-  losersFromNinthPhase: Record<number, Movie>;
+  passedMoviesFromPrevPhase?: Record<number, Movie>;
+  nickname: string;
+  saveResults: boolean;
 }
 
 export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
-  winnersFromNinthPhase,
-  losersFromFirstPhase,
-  losersFromSecondPhase,
-  losersFromThirdPhase,
-  losersFromFourthPhase,
-  losersFromFifthPhase,
-  losersFromSixthPhase,
-  losersFromSeventhPhase,
-  losersFromEighthPhase,
-  losersFromNinthPhase,
+  passedMoviesFromPrevPhase,
+  nickname,
+  saveResults,
 }) => {
   const [availableMovies, setAvailableMovies] = useState<Record<number, Movie>>(
-    { ...winnersFromNinthPhase }
+    { ...MOVIES16 }
   );
-  const [winners8, setWinners8] = useState<Record<number, Movie>>({});
-  const [losers8, setLosers8] = useState<Record<number, Movie>>({});
-  const [winners4, setWinners4] = useState<Record<number, Movie>>({});
-  const [losers4, setLosers4] = useState<Record<number, Movie>>({});
-  const [winners2, setWinners2] = useState<Record<number, Movie>>({});
-  const [losers2, setLosers2] = useState<Record<number, Movie>>({});
-  const [winners1, setWinners1] = useState<Record<number, Movie>>({});
-  const [losers1, setLosers1] = useState<Record<number, Movie>>({});
-  const [winners3rd, setWinners3rd] = useState<Record<number, Movie>>({});
-  const [losers3rd, setLosers3rd] = useState<Record<number, Movie>>({});
+  const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<[number, number] | null>(
     null
   );
+  const [filteredMovies, setFilteredMovies] = useState<Record<number, Movie>>(
+    Object.fromEntries(
+      Object.entries(availableMovies).filter(
+        ([key, movie]) => movie.place === ""
+      )
+    )
+  );
+  const [winnerMovies, setWinnerMovies] = useState<Record<number, Movie>>({});
+  const [thirdPlaceMovies, setThirdPlaceMovies] = useState<
+    Record<number, Movie>
+  >({});
+  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [phase, setPhase] = useState<number>(8);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
 
+  useEffect(() => {
+    getNextMovies();
+  }, []);
+
+  useEffect(() => {
+    const loserMovies: Record<number, Movie> = Object.fromEntries(
+      Object.entries(availableMovies).filter(
+        ([key, movie]) => movie.place !== ""
+      )
+    );
+    setPassedMovied((prev) => ({
+      ...prev,
+      ...loserMovies,
+    }));
+  }, []);
+
+  useEffect(() => {
+    getNextMovies();
+  }, [filteredMovies]);
+
   const getNextMovies = () => {
-    const keys = Object.keys(availableMovies).map(Number);
+    const keys = Object.keys(filteredMovies).map(Number);
     if (keys.length >= 2) {
       const selectedKeys = keys.slice(0, 2) as [number, number];
       setCurrentMovies(selectedKeys);
@@ -55,65 +65,109 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
   };
 
   const handleMovieSelection = (winnerKey: number, loserKey: number) => {
-    const winnerMovie = availableMovies[winnerKey];
-    const loserMovie = availableMovies[loserKey];
-    if (phase === 8) {
-      setWinners8((prev) => ({ ...prev, [winnerKey]: winnerMovie }));
-      setLosers8((prev) => ({ ...prev, [loserKey]: loserMovie }));
-    } else if (phase === 4) {
-      setWinners4((prev) => ({ ...prev, [winnerKey]: winnerMovie }));
-      setLosers4((prev) => ({ ...prev, [loserKey]: loserMovie }));
-    } else if (phase === 2) {
-      setWinners2((prev) => ({ ...prev, [winnerKey]: winnerMovie }));
-      setLosers2((prev) => ({ ...prev, [loserKey]: loserMovie }));
-    } else if (phase === 3) {
-      setWinners3rd((prev) => ({ ...prev, [winnerKey]: winnerMovie }));
-      setLosers3rd((prev) => ({ ...prev, [loserKey]: loserMovie }));
-    } else if (phase === 1) {
-      setWinners1((prev) => ({ ...prev, [winnerKey]: winnerMovie }));
-      setLosers1((prev) => ({ ...prev, [loserKey]: loserMovie }));
-    }
+    if (!selectedMovieId) {
+      setSelectedMovieId(loserKey);
+      setTimeout(() => {
+        const winnerMovie = filteredMovies[winnerKey];
+        const loserMovie = filteredMovies[loserKey];
+        if (phase === 8) {
+          loserMovie.place = "9-16";
+          setPassedMovied((prev) => ({
+            ...prev,
+            [loserKey]: loserMovie,
+          }));
+          setWinnerMovies((prev) => ({
+            ...prev,
+            [winnerKey]: winnerMovie,
+          }));
+        } else if (phase === 4) {
+          loserMovie.place = "5-8";
+          setPassedMovied((prev) => ({
+            ...prev,
+            [loserKey]: loserMovie,
+          }));
+          setWinnerMovies((prev) => ({
+            ...prev,
+            [winnerKey]: winnerMovie,
+          }));
+        } else if (phase === 2) {
+          setThirdPlaceMovies((prev) => ({
+            ...prev,
+            [loserKey]: loserMovie,
+          }));
+          setWinnerMovies((prev) => ({
+            ...prev,
+            [winnerKey]: winnerMovie,
+          }));
+        } else if (phase === 3) {
+          loserMovie.place = "4";
+          winnerMovie.place = "3";
+          setPassedMovied((prev) => ({
+            ...prev,
+            [loserKey]: loserMovie,
+            [winnerKey]: winnerMovie,
+          }));
+        } else if (phase === 1) {
+          loserMovie.place = "2";
+          winnerMovie.place = "1";
+          setPassedMovied((prev) => ({
+            ...prev,
+            [loserKey]: loserMovie,
+            [winnerKey]: winnerMovie,
+          }));
+        }
 
-    const updatedAvailableMovies = { ...availableMovies };
-    delete updatedAvailableMovies[winnerKey];
-    delete updatedAvailableMovies[loserKey];
-    setAvailableMovies(updatedAvailableMovies);
-    setRound((prev) => prev + 1);
+        const updatedAvailableMovies = { ...filteredMovies };
+        delete updatedAvailableMovies[loserKey];
+        delete updatedAvailableMovies[winnerKey];
+        setFilteredMovies(updatedAvailableMovies);
+        setRound((prev) => prev + 1);
+        setSelectedMovieId(null);
+      }, 500);
+    }
   };
 
   useEffect(() => {
-    if (phase === 8 && Object.keys(winners8).length === 8) {
+    if (phase === 8 && round > 8) {
       setPhase(4);
-      setAvailableMovies({ ...winners8 });
       setRound(1);
-    } else if (phase === 4 && Object.keys(winners4).length === 4) {
+      setFilteredMovies(winnerMovies);
+      setWinnerMovies({});
+    } else if (phase === 4 && round > 4) {
       setPhase(2);
-      setAvailableMovies({ ...winners4 });
       setRound(1);
-    } else if (phase === 2 && Object.keys(winners2).length === 2) {
+      setFilteredMovies(winnerMovies);
+      setWinnerMovies({});
+    } else if (phase === 2 && round > 2) {
       setPhase(3);
-      setAvailableMovies({ ...losers2 });
       setRound(1);
-    } else if (phase === 3 && Object.keys(winners3rd).length === 1) {
+      setFilteredMovies(thirdPlaceMovies);
+    } else if (phase === 3 && round > 1) {
       setPhase(1);
-      setAvailableMovies({ ...winners2 });
       setRound(1);
-    } else if (phase === 1 && Object.keys(winners1).length === 1) {
+      setFilteredMovies(winnerMovies);
+      setWinnerMovies({});
+    } else if (phase === 1 && round > 1) {
       setRoundEnded(true);
     }
-  }, [winners8, winners4, winners2, winners1, winners3rd, losers2, phase]);
+  }, [phase, round]);
 
-  useEffect(() => {
-    getNextMovies();
-  }, [availableMovies]);
+  const sortedMovies = Object.entries(passedMovies).sort(
+    ([keyA, movieA], [keyB, movieB]) => {
+      const extractNumber = (place: string) => {
+        const match = place.match(/^\d+/);
+        return match ? parseInt(match[0], 10) : Infinity;
+      };
 
-  const keys1 = Object.keys(winners1) as unknown as number[];
-  const keys2 = Object.keys(losers1) as unknown as number[];
-  const keys3 = Object.keys(winners3rd) as unknown as number[];
-  const keys4 = Object.keys(losers3rd) as unknown as number[];
+      const placeA = extractNumber(movieA.place);
+      const placeB = extractNumber(movieB.place);
+
+      return placeA - placeB;
+    }
+  );
 
   return !roundEnded ? (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
@@ -132,16 +186,17 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
       </div>
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
           gap: "10px",
           padding: "20px",
+          height: "calc(100% - 88px)",
+          justifyContent: "center",
         }}
       >
         {currentMovies &&
           currentMovies.map((key) => {
-            const movie = availableMovies[key];
+            const movie = filteredMovies[key];
             return movie ? (
               <div
                 key={key}
@@ -152,19 +207,25 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
                   )
                 }
                 style={{
-                  width: "23%",
-                  cursor: "pointer",
+                  width: "100%",
+                  minHeight: "400px",
+                  cursor: selectedMovieId ? "auto" : "pointer",
                   border: "2px solid black",
                   borderRadius: "5px",
                   overflow: "hidden",
                   textAlign: "center",
                   backgroundColor: "#f0f0f0",
+                  opacity: selectedMovieId === Number(key) ? 0 : 1,
+                  transition: "opacity 0.85s, background-color 1s",
                 }}
               >
                 <img
                   src={movie.img}
                   alt={movie.name}
-                  style={{ width: "100%", height: "auto" }}
+                  style={{
+                    width: "100%",
+                    height: "calc(100% - 50px)",
+                  }}
                 />
                 <div style={{ padding: "10px", fontSize: "16px" }}>
                   {movie.name}
@@ -177,455 +238,141 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
   ) : (
     <div
       style={{
-        textAlign: "center",
-        display: "flex",
-        flexDirection: "column",
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
       }}
     >
       <div
         style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
           display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
+          flexDirection: "column",
         }}
       >
         <div
           style={{
-            width: "23%",
-            border: "2px solid black",
-            borderRadius: "5px",
-            overflow: "hidden",
-            textAlign: "center",
+            width: "100%",
+            display: "flex",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: "#f0f0f0",
+            fontSize: "25px",
+            border: "1px solid black",
           }}
         >
-          Первое место:{" "}
-          <img
-            src={winners1[keys1[0]].img}
-            alt={winners1[keys1[0]].name}
-            style={{ width: "100%", height: "auto" }}
-          />
-          <div style={{ padding: "10px", fontSize: "16px" }}>
-            {winners1[keys1[0]].name}
-          </div>
+          Ваш рейтинг
         </div>
         <div
           style={{
-            width: "23%",
-            border: "2px solid black",
-            borderRadius: "5px",
+            width: "100%",
+            display: "flex",
+            flexDirection: "row",
             overflow: "hidden",
             textAlign: "center",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "space-between",
             backgroundColor: "#f0f0f0",
           }}
         >
-          Второе место:{" "}
-          <img
-            src={losers1[keys2[0]].img}
-            alt={losers1[keys2[0]].name}
-            style={{ width: "100%", height: "auto" }}
-          />
-          <div style={{ padding: "10px", fontSize: "16px" }}>
-            {losers1[keys2[0]].name}
+          <div
+            style={{
+              display: "flex",
+              width: "11%",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              justifyContent: "center",
+              fontSize: "25px",
+              border: "1px solid black",
+            }}
+          >
+            Место
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "80%",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              justifyContent: "center",
+              fontSize: "25px",
+              border: "1px solid black",
+            }}
+          >
+            Фильм
+          </div>
+          <div
+            style={{
+              display: "flex",
+              width: "9%",
+              paddingTop: "10px",
+              paddingBottom: "10px",
+              justifyContent: "center",
+              fontSize: "25px",
+              border: "1px solid black",
+            }}
+          >
+            Постер
           </div>
         </div>
-        <div
-          style={{
-            width: "23%",
-            border: "2px solid black",
-            borderRadius: "5px",
-            overflow: "hidden",
-            textAlign: "center",
-            backgroundColor: "#f0f0f0",
-          }}
-        >
-          Третье место:{" "}
-          <img
-            src={winners3rd[keys3[0]].img}
-            alt={winners3rd[keys3[0]].name}
-            style={{ width: "100%", height: "auto" }}
-          />
-          <div style={{ padding: "10px", fontSize: "16px" }}>
-            {winners3rd[keys3[0]].name}
-          </div>
-        </div>
-        <div
-          style={{
-            width: "23%",
-            border: "2px solid black",
-            borderRadius: "5px",
-            overflow: "hidden",
-            textAlign: "center",
-            backgroundColor: "#f0f0f0",
-          }}
-        >
-          Четвертое место:{" "}
-          <img
-            src={losers3rd[keys4[0]].img}
-            alt={losers3rd[keys4[0]].name}
-            style={{ width: "100%", height: "auto" }}
-          />
-          <div style={{ padding: "10px", fontSize: "16px" }}>
-            {losers3rd[keys4[0]].name}
-          </div>
-        </div>
-      </div>
-      <div>4-8 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losers4).map(([key, movie]) => (
+        {sortedMovies.map(([key, movie]) => (
           <div
             key={key}
             style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
               overflow: "hidden",
-              textAlign: "center",
+              justifyContent: "space-between",
               backgroundColor: "#f0f0f0",
             }}
           >
+            <div
+              style={{
+                display: "flex",
+                width: "11%",
+                height: "100px",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "25px",
+                border: "1px solid black",
+              }}
+            >
+              {movie.place}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                width: "80%",
+                height: "100px",
+                justifyContent: "center",
+                alignItems: "center",
+                fontSize: "25px",
+                border: "1px solid black",
+              }}
+            >
+              {movie.name}
+            </div>
             <img
               src={movie.img}
               alt={movie.name}
-              style={{ width: "100%", height: "auto" }}
+              style={{
+                display: "flex",
+                width: "9%",
+                height: "100px",
+                justifyContent: "center",
+                fontSize: "25px",
+                border: "1px solid black",
+              }}
             />
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
           </div>
         ))}
       </div>
-      <div>9-16 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losers8).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <img
-              src={movie.img}
-              alt={movie.name}
-              style={{ width: "100%", height: "auto" }}
-            />
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>17-24 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromNinthPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>25-36 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromEighthPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>37-48 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromSeventhPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>49-64 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromSixthPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>65-84 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromFifthPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>85-108 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromFourthPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>109-140 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromThirdPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>141-180 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromSecondPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div>181-232 место:</div>
-      <div
-        style={{
-          marginBottom: "20px",
-          marginTop: "20px",
-          fontSize: "18px",
-          textAlign: "center",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {Object.entries(losersFromFirstPhase).map(([key, movie]) => (
-          <div
-            key={key}
-            style={{
-              width: "23%",
-              border: "2px solid black",
-              borderRadius: "5px",
-              overflow: "hidden",
-              textAlign: "center",
-              backgroundColor: "#f0f0f0",
-            }}
-          >
-            <div style={{ padding: "10px", fontSize: "16px" }}>
-              {movie.name}
-            </div>
-          </div>
-        ))}
-      </div>
+      <StatisticPhase
+        saveResults={saveResults}
+        nickname={nickname}
+        passedMoviesFromPrevPhase={passedMovies}
+      />
     </div>
   );
 };
