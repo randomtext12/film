@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FirstPhase } from "./firstPhase";
-import { DesidersPhase } from "./desidersPhase";
 export const MainScreen: React.FC = () => {
   const [testStarted, setTestStarted] = useState<boolean>(false);
   const [checkbox, setCheckbox] = useState<boolean>(true);
@@ -94,6 +93,6 @@ export const MainScreen: React.FC = () => {
       </div>
     </div>
   ) : (
-    <DesidersPhase saveResults={checkbox} nickname={inputValue} />
+    <FirstPhase saveResults={checkbox} nickname={inputValue} />
   );
 };

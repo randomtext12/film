@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Movie, MOVIES16 } from "./movies";
+import { Movie } from "./movies";
 import { StatisticPhase } from "./statisticPhase";
 
 interface DesidersPhaseProps {
@@ -14,7 +14,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
   saveResults,
 }) => {
   const [availableMovies, setAvailableMovies] = useState<Record<number, Movie>>(
-    { ...MOVIES16 }
+    { ...passedMoviesFromPrevPhase }
   );
   const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<[number, number] | null>(
