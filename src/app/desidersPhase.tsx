@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Movie } from "./movies";
+import { Movie, MOVIES16 } from "./movies";
 import { StatisticPhase } from "./statisticPhase";
 
 interface DesidersPhaseProps {
@@ -182,7 +182,7 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
           : "Финал лузеров "}
         {round}/{phase !== 3 ? phase : "1"}
         <br />
-        Выберите 1 фильм, который вам нравится БОЛЬШЕ
+        Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
       <div
         style={{
@@ -202,8 +202,8 @@ export const DesidersPhase: React.FC<DesidersPhaseProps> = ({
                 key={key}
                 onClick={() =>
                   handleMovieSelection(
-                    key,
-                    currentMovies.find((k) => k !== key)!
+                    currentMovies.find((k) => k !== key)!,
+                    key
                   )
                 }
                 style={{

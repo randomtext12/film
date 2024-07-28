@@ -21,7 +21,6 @@ export const NinthPhase: React.FC<NinthPhaseProps> = ({
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
-  const [desiders, setDesiders] = useState<boolean>(false);
 
   const filteredMovies: Record<number, Movie> = Object.fromEntries(
     Object.entries(availableMovies).filter(([key, movie]) => movie.place === "")
@@ -142,48 +141,11 @@ export const NinthPhase: React.FC<NinthPhaseProps> = ({
           ))}
       </div>
     </div>
-  ) : desiders ? (
+  ) : (
     <DesidersPhase
       passedMoviesFromPrevPhase={passedMovies}
       saveResults={saveResults}
       nickname={nickname}
     />
-  ) : (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: "100%",
-        height: "100vh",
-        textAlign: "center",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        style={{
-          fontSize: "40px",
-          paddingBottom: "30px",
-        }}
-      >
-        Начиная с этого раунда, вы должны выбирать фильм, который вам нравится
-        больше
-      </div>
-      <div
-        onClick={() => setDesiders(true)}
-        style={{
-          borderRadius: "5px",
-          fontSize: "50px",
-          border: "2px solid black",
-          paddingTop: "10px",
-          paddingBottom: "10px",
-          paddingLeft: "20px",
-          paddingRight: "20px",
-          cursor: "pointer",
-        }}
-      >
-        Перейди к 1/8 финала
-      </div>
-    </div>
   );
 };
