@@ -18,10 +18,10 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
   );
   const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<Record<number, Movie>>({});
-  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
+  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [savingEnded, setSavingEnded] = useState<boolean>(false);
   const [savedCount, setSavedCount] = useState<number>(0);
 
@@ -63,7 +63,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
       setSelectedMovieId(selectedKey);
       setTimeout(() => {
         const selectedMovie = currentMovies[selectedKey];
-        selectedMovie.place = "141-180";
+        selectedMovie.place = "169-216";
 
         if (selectedMovie) {
           const remainingKeys = Object.keys(currentMovies).filter(
@@ -89,7 +89,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
   };
 
   const handleChooseSavedMovies = (key: number) => {
-    if (savedCount < 5) {
+    if (savedCount < 6) {
       if (savedMovies[key]?.name === passedMovies[key]?.name) {
         setSavedMovies((prev) => {
           const updatedLosers = { ...prev };
@@ -115,7 +115,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
   };
 
   const handleEndSavingMovies = () => {
-    if (savedCount === 5) {
+    if (savedCount === 6) {
       const keys = Object.keys(savedMovies).map(Number);
       for (const key of keys) {
         if (passedMovies[key]) {
@@ -133,7 +133,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div style={{ fontSize: "18px", textAlign: "center" }}>
-        Второй раунд {round}/{45}
+        Второй раунд {round}/{54}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
@@ -201,7 +201,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Вам нужно выбрать 5 фильмов, которые вы спасете(они
+        Раунд завершён! Вам нужно выбрать 6 фильмов, которые вы спасете(они
         перейдут в следующий раунд):
       </div>
       <div
@@ -213,8 +213,8 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
           border: "1px solid black",
           justifyContent: "center",
           borderRadius: "5px",
-          cursor: savedCount < 5 ? "default" : "pointer",
-          backgroundColor: savedCount < 5 ? "#f0f0f0" : "#47d37d",
+          cursor: savedCount < 6 ? "default" : "pointer",
+          backgroundColor: savedCount < 6 ? "#f0f0f0" : "#47d37d",
         }}
         onClick={handleEndSavingMovies}
       >
@@ -230,7 +230,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
         }}
       >
         {Object.entries(passedMovies)
-          .filter(([key, movie]) => movie.place === "141-180")
+          .filter(([key, movie]) => movie.place === "169-216")
           .map(([key, movie]) => (
             <div
               key={key}
@@ -242,7 +242,7 @@ export const SecondPhase: React.FC<SecondPhaseProps> = ({
                 alignItems: "center",
                 justifyContent: "center",
                 cursor:
-                  savedCount < 5
+                  savedCount < 6
                     ? "pointer"
                     : savedMovies[Number(key)]
                     ? "pointer"

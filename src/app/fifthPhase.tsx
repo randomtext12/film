@@ -18,10 +18,10 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
   );
   const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<Record<number, Movie>>({});
-  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
+  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [savingEnded, setSavingEnded] = useState<boolean>(false);
   const [savedCount, setSavedCount] = useState<number>(0);
 
@@ -63,7 +63,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
       setSelectedMovieId(selectedKey);
       setTimeout(() => {
         const selectedMovie = currentMovies[selectedKey];
-        selectedMovie.place = "65-84";
+        selectedMovie.place = "82-104";
 
         if (selectedMovie) {
           const remainingKeys = Object.keys(currentMovies).filter(
@@ -89,7 +89,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
   };
 
   const handleChooseSavedMovies = (key: number) => {
-    if (savedCount < 1) {
+    if (savedCount < 3) {
       if (savedMovies[key]?.name === passedMovies[key]?.name) {
         setSavedMovies((prev) => {
           const updatedLosers = { ...prev };
@@ -115,7 +115,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
   };
 
   const handleEndSavingMovies = () => {
-    if (savedCount === 1) {
+    if (savedCount === 3) {
       const keys = Object.keys(savedMovies).map(Number);
       for (const key of keys) {
         if (passedMovies[key]) {
@@ -133,7 +133,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div style={{ fontSize: "18px", textAlign: "center" }}>
-        Пятый раунд {round}/{21}
+        Пятый раунд {round}/{26}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
@@ -199,15 +199,10 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
       }}
     >
       <div
-        style={{ marginBottom: "5px", fontSize: "18px", textAlign: "center" }}
-      >
-        Раунд завершён! Вам нужно выбрать 1 фильм, которые вы спасете(он
-        перейдет в следующий раунд):
-      </div>
-      <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Это последний раунд, в котором можно спасти фильм
+        Раунд завершён! Вам нужно выбрать 3 фильма, которые вы спасете(они
+        перейдут в следующий раунд):
       </div>
       <div
         style={{
@@ -218,8 +213,8 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
           border: "1px solid black",
           justifyContent: "center",
           borderRadius: "5px",
-          cursor: savedCount < 1 ? "default" : "pointer",
-          backgroundColor: savedCount < 1 ? "#f0f0f0" : "#47d37d",
+          cursor: savedCount < 3 ? "default" : "pointer",
+          backgroundColor: savedCount < 3 ? "#f0f0f0" : "#47d37d",
         }}
         onClick={handleEndSavingMovies}
       >
@@ -235,7 +230,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
         }}
       >
         {Object.entries(passedMovies)
-          .filter(([key, movie]) => movie.place === "65-84")
+          .filter(([key, movie]) => movie.place === "82-104")
           .map(([key, movie]) => (
             <div
               key={key}
@@ -247,7 +242,7 @@ export const FifthPhase: React.FC<FifthPhaseProps> = ({
                 alignItems: "center",
                 justifyContent: "center",
                 cursor:
-                  savedCount < 1
+                  savedCount < 3
                     ? "pointer"
                     : savedMovies[Number(key)]
                     ? "pointer"

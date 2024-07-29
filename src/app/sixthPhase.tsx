@@ -38,11 +38,11 @@ export const SixthPhase: React.FC<SixthPhaseProps> = ({
   }, []);
 
   const getNextMovies = (): void => {
-    if (Object.keys(filteredMovies).length < 4) {
+    if (Object.keys(filteredMovies).length < 3) {
       setRoundEnded(true);
     }
 
-    const randomKeys = getRandomKeys(4, filteredMovies);
+    const randomKeys = getRandomKeys(3, filteredMovies);
     const selectedMovies = randomKeys.reduce((acc, key) => {
       acc[key] = availableMovies[key];
       return acc;
@@ -60,7 +60,7 @@ export const SixthPhase: React.FC<SixthPhaseProps> = ({
       setSelectedMovieId(selectedKey);
       setTimeout(() => {
         const selectedMovie = currentMovies[selectedKey];
-        selectedMovie.place = "49-64";
+        selectedMovie.place = "55-81";
 
         if (selectedMovie) {
           const remainingKeys = Object.keys(currentMovies).filter(
@@ -92,14 +92,14 @@ export const SixthPhase: React.FC<SixthPhaseProps> = ({
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div style={{ fontSize: "18px", textAlign: "center" }}>
-        Шестой раунд {round}/{16}
+        Шестой раунд {round}/{27}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(4, 1fr)",
+          gridTemplateColumns: "repeat(3, 1fr)",
           gap: "10px",
           padding: "20px",
           height: "calc(100% - 88px)",

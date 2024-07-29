@@ -1,102 +1,21 @@
-import { useEffect, useState } from "react";
+import { collection, getDocs } from "firebase/firestore";
 import { Movie } from "./movies";
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { useEffect, useState } from "react";
+import { groupMoviesByTitle, sortGroupedMovies } from "./statisticPhase";
+import { MainScreen } from "./mainScreen";
 
-interface StatisticPhaseProps {
-  passedMoviesFromPrevPhase?: Record<number, Movie>;
-  nickname: string;
-  saveResults: boolean;
+interface StatisticScreenProps {
+  statisticScreenOpened: boolean;
+  setStatisticScreenOpened: (opened: boolean) => void;
 }
 
-export const getAveragePlace = (place: string): number => {
-  if (!place) return 0;
-  const parts = place.split("-").map(Number);
-  if (parts.length === 1) {
-    return parts[0];
-  } else if (parts.length === 2) {
-    return (parts[0] + parts[1]) / 2;
-  }
-  return 0;
-};
-
-export const groupMoviesByTitle = (
-  movies: Record<number, Movie>[]
-): Record<string, Movie> => {
-  const movieMap: Record<
-    string,
-    { totalPlace: number; count: number; movie: Movie }
-  > = {};
-
-  movies.forEach((movieObj) => {
-    for (const [key, movie] of Object.entries(movieObj)) {
-      const avgPlace = getAveragePlace(movie.place);
-
-      if (!movieMap[movie.name] && avgPlace > 0) {
-        movieMap[movie.name] = { totalPlace: avgPlace, count: 1, movie };
-      } else if (avgPlace > 0) {
-        movieMap[movie.name].totalPlace += avgPlace;
-        movieMap[movie.name].count += 1;
-      }
-    }
-  });
-
-  const groupedMovies: Record<string, Movie> = {};
-  for (const [name, data] of Object.entries(movieMap)) {
-    const avgPlace = data.totalPlace / data.count;
-    groupedMovies[name] = {
-      ...data.movie,
-      place: avgPlace.toFixed(2).toString(),
-    };
-  }
-
-  return groupedMovies;
-};
-
-export const sortGroupedMovies = (
-  groupedMovies: Record<string, Movie>
-): Movie[] => {
-  return Object.values(groupedMovies).sort(
-    (a, b) => getAveragePlace(a.place) - getAveragePlace(b.place)
-  );
-};
-
-export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
-  passedMoviesFromPrevPhase,
-  nickname,
-  saveResults,
+export const StatisticScreen: React.FC<StatisticScreenProps> = ({
+  statisticScreenOpened,
+  setStatisticScreenOpened,
 }) => {
   const [movies, setMovies] = useState<Record<number, Movie>[]>([]);
   const [sortedMovies, setSortedMovies] = useState<Movie[]>([]);
-
-  const addDataToFirestore = async () => {
-    if (saveResults) {
-      if (
-        !passedMoviesFromPrevPhase ||
-        Object.keys(passedMoviesFromPrevPhase).length === 0
-      ) {
-        console.log("Нет данных для добавления");
-        return;
-      }
-
-      const collectionRef = collection(db, "movies");
-
-      try {
-        const snapshot = await getDocs(
-          query(collectionRef, where("nickname", "==", nickname))
-        );
-        if (!snapshot.empty) {
-          console.log("Объекты с этим никнеймом уже существуют в базе данных");
-          return;
-        }
-
-        await addDoc(collectionRef, { ...passedMoviesFromPrevPhase, nickname });
-        console.log("Объект добавлен в базу данных");
-      } catch (e) {
-        console.error("Ошибка при добавлении объекта в базу данных: ", e);
-      }
-    }
-  };
 
   const fetchDataFromFirestore = async () => {
     const collectionRef = collection(db, "movies");
@@ -114,7 +33,6 @@ export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
   };
 
   useEffect(() => {
-    addDataToFirestore();
     fetchDataFromFirestore();
   }, []);
 
@@ -126,7 +44,9 @@ export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
     }
   }, [movies]);
 
-  return (
+  console.log("sortedMovies", sortedMovies);
+
+  return statisticScreenOpened ? (
     <div
       style={{
         display: "flex",
@@ -135,18 +55,56 @@ export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
     >
       <div
         style={{
-          width: "100%",
           display: "flex",
-          alignContent: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#f0f0f0",
-          fontSize: "25px",
-          border: "1px solid black",
+          flexDirection: "row",
         }}
       >
-        Пользовательский рейтинг
+        <div
+          onClick={() => {
+            setStatisticScreenOpened(false);
+          }}
+          style={{
+            width: "11%",
+            display: "flex",
+            backgroundColor: "#f0f0f0",
+            border: "1px solid black",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "20px",
+            cursor: "pointer",
+          }}
+        >
+          Вернуться назад
+        </div>
+        <div
+          style={{
+            width: "80%",
+            display: "flex",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#f0f0f0",
+            fontSize: "25px",
+            border: "1px solid black",
+          }}
+        >
+          Пользовательский рейтинг
+        </div>
+        <div
+          style={{
+            width: "9%",
+            display: "flex",
+            alignContent: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "#f0f0f0",
+            fontSize: "25px",
+            border: "1px solid black",
+          }}
+        />
       </div>
+
       <div
         style={{
           width: "100%",
@@ -253,5 +211,7 @@ export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
         </div>
       ))}
     </div>
+  ) : (
+    <MainScreen />
   );
 };

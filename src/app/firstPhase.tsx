@@ -16,15 +16,16 @@ export const FirstPhase: React.FC<FirstPhaseProps> = ({
   );
   const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<Record<number, Movie>>({});
-  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
+  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [savingEnded, setSavingEnded] = useState<boolean>(false);
   const [savedCount, setSavedCount] = useState<number>(0);
 
   const getNextMovies = (): void => {
     if (Object.keys(availableMovies).length < 4) {
+      console.log("availableMovies", availableMovies);
       setRoundEnded(true);
     }
 
@@ -46,7 +47,7 @@ export const FirstPhase: React.FC<FirstPhaseProps> = ({
       setSelectedMovieId(selectedKey);
       setTimeout(() => {
         const selectedMovie = currentMovies[selectedKey];
-        selectedMovie.place = "181-232";
+        selectedMovie.place = "217-280";
 
         if (selectedMovie) {
           const remainingKeys = Object.keys(currentMovies).filter(
@@ -116,7 +117,7 @@ export const FirstPhase: React.FC<FirstPhaseProps> = ({
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div style={{ fontSize: "18px", textAlign: "center" }}>
-        Первый раунд {round}/{58}
+        Первый раунд {round}/{70}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
@@ -211,7 +212,7 @@ export const FirstPhase: React.FC<FirstPhaseProps> = ({
         }}
       >
         {Object.entries(passedMovies)
-          .filter(([key, movie]) => movie.place === "181-232")
+          .filter(([key, movie]) => movie.place === "217-280")
           .map(([key, movie]) => (
             <div
               key={key}

@@ -354,7 +354,7 @@ export const MOVIES: Record<
   },
   68: {
     name: "Воин",
-    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/g6CV1Ck0toQ3VNsN9Tqz7BTcnVF.jpg",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2q2x5OCpf6yQPkI8n9Y95isEKPJ.jpg",
     place: "",
   },
   69: {
@@ -1175,6 +1175,246 @@ export const MOVIES: Record<
   232: {
     name: "Трансформеры(все части)",
     img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rIATybb4lnphRHoD05jAyW8lBaP.jpg",
+    place: "",
+  },
+  233: {
+    name: "Американский психопат",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gXLQK2nkUiPcpdTNJItiCxdvU0t.jpg",
+    place: "",
+  },
+  234: {
+    name: "Страх и ненависть в Лас-Вегасе",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/aiyjiGaVbmYnMD4EQCjNPpvSzK2.jpg",
+    place: "",
+  },
+  235: {
+    name: "Изгой",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7pt1wFiuCai9BGGwNoQ0vgcfs1T.jpg",
+    place: "",
+  },
+  236: {
+    name: "Мальчишник в Вегасе(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4uNzdC5UT7YfVTSADDq93r4717S.jpg",
+    place: "",
+  },
+  237: {
+    name: "Идентефикация Борна(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xfYU1RxtvktWObEEHObGBiWGXqy.jpg",
+    place: "",
+  },
+  238: {
+    name: "Легенда",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4shf5Alq4KWCKqrAAQe0JGJHYp5.jpg",
+    place: "",
+  },
+  239: {
+    name: "Звёздный десант(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/s75rmcJ0aGnmYGFhlOYm4BXvZ6b.jpg",
+    place: "",
+  },
+  240: {
+    name: "Патруль времени",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/yse34wFepE2KVDvpLRyD0h1NOoL.jpg",
+    place: "",
+  },
+  241: {
+    name: "Крепкий Орешек(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hJ6Asp1jCC6I01XUzRlkA5BSbbn.jpg",
+    place: "",
+  },
+  242: {
+    name: "Грязь",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hikJQzjhgcQpGIQ18c0AXjDEdF4.jpg",
+    place: "",
+  },
+  243: {
+    name: "Игра на понижение",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/i46ouFO2WBqJ1xIoTQgrD8Criol.jpg",
+    place: "",
+  },
+  244: {
+    name: "Рейд(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/owbpAPpgUGUmK2O0Ig9T6hbI6ED.jpg",
+    place: "",
+  },
+  245: {
+    name: "Области тьмы",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tpvt8Le1Pyd3d7lnp9GTW2uD7hj.jpg",
+    place: "",
+  },
+  246: {
+    name: "Американский пирог(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/33ILt2uMejyCpQ2svEUT25fF7ac.jpg",
+    place: "",
+  },
+  247: {
+    name: "Форма голоса",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/c0Gv8xTSEmIcQPxbhINKvkbJO8s.jpg",
+    place: "",
+  },
+  248: {
+    name: "Парфюмер",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/COplWk8fpNPuJ2kbPG0xqbsSk2.jpg",
+    place: "",
+  },
+  249: {
+    name: "Черный лебедь",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gaNI208wIqL1DD76pg1Mu6EM0hp.jpg",
+    place: "",
+  },
+  250: {
+    name: "Человек из стали",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/azlOOwkq3FS0unvTBjtQVsz6YIk.jpg",
+    place: "",
+  },
+  251: {
+    name: "Обливион",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/56xLv14jx6qvKWMCrF6C96Hs0cl.jpg",
+    place: "",
+  },
+  252: {
+    name: "Мадагаскар(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/kgG2BHjHIWVE2hOiJKAAdDKp7um.jpg",
+    place: "",
+  },
+  253: {
+    name: "Зверополис",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qNZT8HwPWFv8Dc5rEE0O3FFODha.jpg",
+    place: "",
+  },
+  254: {
+    name: "Ледниковый период(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/lhZ73Fj7nk5taF3wKlEBBuzbkZN.jpg",
+    place: "",
+  },
+  255: {
+    name: "Кот в сапогах 2",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/z2gOE3Z4mNLAcw0dQ1BlGoWLrH7.jpg",
+    place: "",
+  },
+  256: {
+    name: "Схватка",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9N4r39PN7xGwCAncqcdo1YswEmD.jpg",
+    place: "",
+  },
+  257: {
+    name: "Мост в Терабитию",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wrjb8LodEnIDxNcENrVJfkYbrHJ.jpg",
+    place: "",
+  },
+  258: {
+    name: "Лабиринт Фавна",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/h2oVVLTa2eQmhEfwuVlG1VUEuuz.jpg",
+    place: "",
+  },
+  259: {
+    name: "Джуманджи(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/360GujnOhIVeEjsjKZq9J9mHInG.jpg",
+    place: "",
+  },
+  260: {
+    name: "Король Англии",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9a4NYjNifcgNWonUsKJTW7i91LC.jpg",
+    place: "",
+  },
+  261: {
+    name: "Меч короля Артура",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pR5liuSzUesiYhe80yTpigUce73.jpg",
+    place: "",
+  },
+  262: {
+    name: "Чарли и шоколадная фабрика",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/3HyLn6UaWJRY26njQ8CHubo7Aiy.jpg",
+    place: "",
+  },
+  263: {
+    name: "Горбатая гора",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/unqK86jVq8eWK5Mg9Lyv3W1XYpN.jpg",
+    place: "",
+  },
+  264: {
+    name: "Назови меня своим именем",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/a9cZC9mutwtS9F9uvIDqeoO8gSJ.jpg",
+    place: "",
+  },
+  265: {
+    name: "Куб(Все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xjHhbwFjTUuCrJBI4uAvJj6b3O1.jpg",
+    place: "",
+  },
+  266: {
+    name: "Пункт назначения(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rrXMDkTZYK4MeEqUAu1jqVNLzg3.jpg",
+    place: "",
+  },
+  267: {
+    name: "12 лет рабства",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qBY5A6iX3BtTEBIYGUdKm373pxH.jpg",
+    place: "",
+  },
+  268: {
+    name: "Семь психопатов",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qatkb5QeI0NtuAOPxJthb0Asyp1.jpg",
+    place: "",
+  },
+  269: {
+    name: "Король говорит!",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/88fOF4F1JdylKesZzNcggZBNni2.jpg",
+    place: "",
+  },
+  270: {
+    name: "Вонка",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xZuJt8fEugqoawTvxDktt5Qt11X.jpg",
+    place: "",
+  },
+  271: {
+    name: "Авиатор",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1RATBZSeVH1tLOBYUBd6dN5O1bo.jpg",
+    place: "",
+  },
+  272: {
+    name: "Тихое место(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/b6MMVZWO7LPITq9XS5a4R22CZjG.jpg",
+    place: "",
+  },
+  273: {
+    name: "Птичий короб",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/dWbhNl7ESABUqXfyOKPr5EQaDXP.jpg",
+    place: "",
+  },
+  274: {
+    name: "Молчание",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pJsQlNTJDioujofc8yXdeABDbeg.jpg",
+    place: "",
+  },
+  275: {
+    name: "Агенты А.Н.К.Л.",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8J7kXEWk2dLttjx1iblx3nSoY1O.jpg",
+    place: "",
+  },
+  276: {
+    name: "Война миров Z ",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/t25IhiCJ8En3uZP27XLSEk8BQCf.jpg",
+    place: "",
+  },
+  277: {
+    name: "Зомби по имени Шон",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hACq0LdC5WNjPb1jzTZzuj1R4qx.jpg",
+    place: "",
+  },
+  278: {
+    name: "Тепло наших тел",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/t9Y49pYbXBAv2jQQQGpzKGZZt6Q.jpg",
+    place: "",
+  },
+  279: {
+    name: "Добро пожаловать в Zомбилэнд",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/kKImcJWO19FWRwcVf1jJMJ7Q72S.jpg",
+    place: "",
+  },
+  280: {
+    name: "Парк Юрского периода",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xcqO13dmGi32LVUUuN75vmHRhya.jpg",
     place: "",
   },
 };

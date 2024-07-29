@@ -91,9 +91,7 @@ export const NinthPhase: React.FC<NinthPhaseProps> = ({
 
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
-      <div
-        style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
-      >
+      <div style={{ fontSize: "18px", textAlign: "center" }}>
         Девятый раунд {round}/{8}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего

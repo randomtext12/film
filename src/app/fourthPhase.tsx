@@ -18,10 +18,10 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
   );
   const [passedMovies, setPassedMovied] = useState<Record<number, Movie>>({});
   const [currentMovies, setCurrentMovies] = useState<Record<number, Movie>>({});
-  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
   const [round, setRound] = useState<number>(1);
   const [roundEnded, setRoundEnded] = useState<boolean>(false);
+  const [savedMovies, setSavedMovies] = useState<Record<number, Movie>>({});
   const [savingEnded, setSavingEnded] = useState<boolean>(false);
   const [savedCount, setSavedCount] = useState<number>(0);
 
@@ -63,7 +63,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
       setSelectedMovieId(selectedKey);
       setTimeout(() => {
         const selectedMovie = currentMovies[selectedKey];
-        selectedMovie.place = "85-108";
+        selectedMovie.place = "105-132";
 
         if (selectedMovie) {
           const remainingKeys = Object.keys(currentMovies).filter(
@@ -89,7 +89,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
   };
 
   const handleChooseSavedMovies = (key: number) => {
-    if (savedCount < 3) {
+    if (savedCount < 5) {
       if (savedMovies[key]?.name === passedMovies[key]?.name) {
         setSavedMovies((prev) => {
           const updatedLosers = { ...prev };
@@ -115,7 +115,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
   };
 
   const handleEndSavingMovies = () => {
-    if (savedCount === 3) {
+    if (savedCount === 5) {
       const keys = Object.keys(savedMovies).map(Number);
       for (const key of keys) {
         if (passedMovies[key]) {
@@ -133,7 +133,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
   return !roundEnded ? (
     <div style={{ padding: "20px", height: "100vh", boxSizing: "border-box" }}>
       <div style={{ fontSize: "18px", textAlign: "center" }}>
-        Четвертый раунд {round}/{27}
+        Четвертый раунд {round}/{33}
         <br />
         Выберите 1 фильм, который вам нравится МЕНЕЕ всего
       </div>
@@ -201,7 +201,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
       <div
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
-        Раунд завершён! Вам нужно выбрать 3 фильма, которые вы спасете(они
+        Раунд завершён! Вам нужно выбрать 5 фильмов, которые вы спасете(они
         перейдут в следующий раунд):
       </div>
       <div
@@ -213,8 +213,8 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
           border: "1px solid black",
           justifyContent: "center",
           borderRadius: "5px",
-          cursor: savedCount < 3 ? "default" : "pointer",
-          backgroundColor: savedCount < 3 ? "#f0f0f0" : "#47d37d",
+          cursor: savedCount < 5 ? "default" : "pointer",
+          backgroundColor: savedCount < 5 ? "#f0f0f0" : "#47d37d",
         }}
         onClick={handleEndSavingMovies}
       >
@@ -230,7 +230,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
         }}
       >
         {Object.entries(passedMovies)
-          .filter(([key, movie]) => movie.place === "85-108")
+          .filter(([key, movie]) => movie.place === "105-132")
           .map(([key, movie]) => (
             <div
               key={key}
@@ -242,7 +242,7 @@ export const FourthPhase: React.FC<FourthPhaseProps> = ({
                 alignItems: "center",
                 justifyContent: "center",
                 cursor:
-                  savedCount < 3
+                  savedCount < 5
                     ? "pointer"
                     : savedMovies[Number(key)]
                     ? "pointer"
