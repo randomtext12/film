@@ -115,7 +115,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
     } else if (stage === 12) {
       setNumberOfKeysToRandom(4);
       setPlaceOfLosingFilm("10-12");
-      setCountOfRoundesInStage(4);
+      setCountOfRoundesInStage(3);
       setCountOfFilmsToSave(0);
       setRoundString("Двенадцатый раунд");
       setSavingEnabled(false);
@@ -134,18 +134,18 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
       setRoundString("Четырнадцатый раунд");
       setSavingEnabled(false);
     } else if (stage === 15) {
-      setNumberOfKeysToRandom(2);
-      setPlaceOfLosingFilm("3-4");
-      setCountOfRoundesInStage(2);
-      setCountOfFilmsToSave(0);
-      setRoundString("Полуфинал");
-      setSavingEnabled(false);
-    } else if (stage === 16) {
-      setNumberOfKeysToRandom(2);
+      setNumberOfKeysToRandom(4);
       setPlaceOfLosingFilm("4");
       setCountOfRoundesInStage(1);
       setCountOfFilmsToSave(0);
-      setRoundString("Финал лузеров");
+      setRoundString("Пятнадцатый раунд");
+      setSavingEnabled(false);
+    } else if (stage === 16) {
+      setNumberOfKeysToRandom(3);
+      setPlaceOfLosingFilm("3");
+      setCountOfRoundesInStage(1);
+      setCountOfFilmsToSave(0);
+      setRoundString("Шестнадцатый раунд");
       setSavingEnabled(false);
     } else if (stage === 17) {
       setNumberOfKeysToRandom(2);
@@ -170,18 +170,11 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
   }, [configUpdated]);
 
   const getNextMovies = (): void => {
-    const filteredMovies: Record<number, Movie> =
-      stage !== 16
-        ? Object.fromEntries(
-            Object.entries(availableMovies).filter(
-              ([key, movie]) => movie.place === ""
-            )
-          )
-        : Object.fromEntries(
-            Object.entries(availableMovies).filter(
-              ([key, movie]) => movie.place === "3-4"
-            )
-          );
+    const filteredMovies: Record<number, Movie> = Object.fromEntries(
+      Object.entries(availableMovies).filter(
+        ([key, movie]) => movie.place === ""
+      )
+    );
     if (Object.keys(filteredMovies).length < numberOfKeysToRandom) {
       if (stage === 17) {
         setStageEnded(true);
@@ -215,9 +208,6 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           );
           const remainingMovies = remainingKeys.reduce((acc, key) => {
             acc[Number(key)] = currentMovies[Number(key)];
-            if (stage === 16) {
-              acc[Number(key)].place = "3";
-            }
             if (stage === 17) {
               acc[Number(key)].place = "1";
             }
@@ -233,7 +223,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           setRound((prev) => prev + 1);
           setSelectedMovieId(null);
         }
-      }, 500);
+      }, 5);
     }
   };
 
@@ -350,7 +340,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
         style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
       >
         Раунд завершён! Вам нужно выбрать {countOfFilmsToSave}{" "}
-        {countOfFilmsToSave > 3
+        {countOfFilmsToSave > 4
           ? "фильмов"
           : countOfFilmsToSave > 1
           ? "фильма"
