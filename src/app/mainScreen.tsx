@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { FirstPhase } from "./firstPhase";
-import { DesidersPhase } from "./desidersPhase";
-import { StatisticScreen } from "./statisticScreen";
+import { StatisticScreenStart } from "./statisticScreenStart";
+import { MainPhase } from "./mainPhase";
 export const MainScreen: React.FC = () => {
   const [testStarted, setTestStarted] = useState<boolean>(false);
   const [statisticScreenOpened, setStatisticScreenOpened] =
@@ -27,9 +26,9 @@ export const MainScreen: React.FC = () => {
     }
   };
   return testStarted ? (
-    <FirstPhase saveResults={checkbox} nickname={inputValue} />
+    <MainPhase saveResults={checkbox} nickname={inputValue} />
   ) : statisticScreenOpened ? (
-    <StatisticScreen
+    <StatisticScreenStart
       statisticScreenOpened={statisticScreenOpened}
       setStatisticScreenOpened={setStatisticScreenOpened}
     />

@@ -1417,6 +1417,106 @@ export const MOVIES: Record<
     img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xcqO13dmGi32LVUUuN75vmHRhya.jpg",
     place: "",
   },
+  281: {
+    name: "Оно(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/wEHpeWhH3zGYJbqz3OtUJ4tMMM6.jpg",
+    place: "",
+  },
+  282: {
+    name: "Сплит(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xrVZF8DJNTPiILFygj8sg4tmauV.jpg",
+    place: "",
+  },
+  283: {
+    name: "Зодиак",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/1ypQRKw54EC29oPhEQBimxutulI.jpg",
+    place: "",
+  },
+  284: {
+    name: "Враг",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zNgKPHlFAcDhrTY7uAKfpNJlFmh.jpg",
+    place: "",
+  },
+  285: {
+    name: "2001 год: Космическая одиссея",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/sEVu8HjXIdxVEPYP5dDKxJmp757.jpg",
+    place: "",
+  },
+  286: {
+    name: "Не говори никому",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uYDGPwXBHAcNo4CnD61X1kriAm8.jpg",
+    place: "",
+  },
+  287: {
+    name: "Донни Дарко",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/imqQqMyNUBA1Untuj6P2fzAGpea.jpg",
+    place: "",
+  },
+  288: {
+    name: "Константин: Повелитель тьмы",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/tKpdR9usPg7Fs3k25b803MaLo70.jpg",
+    place: "",
+  },
+  289: {
+    name: "Человек паук(все части)",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/uxNYgyfM9zeIQevvLON8zlPLocS.jpg",
+    place: "",
+  },
+  290: {
+    name: "Мгла",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ybdRtx96AO09bEPrptfB8Co3flY.jpg",
+    place: "",
+  },
+  291: {
+    name: "На грани",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/bgNZw14EwCM2gkdrE2ndYnrumq4.jpg",
+    place: "",
+  },
+  292: {
+    name: "Одаренная",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/A3WZzl1opSIpmjoAmaFKJaxOKvL.jpg",
+    place: "",
+  },
+  293: {
+    name: "Книга Илая ",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6puUIUlfwQRXNM3lYqW9harJjBu.jpg",
+    place: "",
+  },
+  294: {
+    name: "Сиротский Бруклин",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/28FN5TYput7AbckAMYEB80zpQ2X.jpg",
+    place: "",
+  },
+  295: {
+    name: "13-ый район",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8HtJ2iH5HTwB3nSt9WEtlvf8niK.jpg",
+    place: "",
+  },
+  296: {
+    name: "13 грехов ",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6N0vEwysQEia6STcMhrCOn5Gs6n.jpg",
+    place: "",
+  },
+  297: {
+    name: "Из машины",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/xu0SNh1rPhLegKeuvLqbC3aBofN.jpg",
+    place: "",
+  },
+  298: {
+    name: "Варкрафт",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/gPFQZIbWk5VukScCCfMPbGZ80g8.jpg",
+    place: "",
+  },
+  299: {
+    name: "Стрингер",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/iuuRe2E3tiCVxD0amDxYTZJne3A.jpg",
+    place: "",
+  },
+  300: {
+    name: "Афера по-американски ",
+    img: "https://image.tmdb.org/t/p/w600_and_h900_bestv2/oDzwpKyzYzi6SxmjnVOi3NoU644.jpg",
+    place: "",
+  },
 };
 
 export const MOVIES16: Record<

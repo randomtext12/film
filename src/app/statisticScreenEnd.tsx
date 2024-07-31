@@ -3,7 +3,7 @@ import { Movie } from "./movies";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 
-interface StatisticPhaseProps {
+interface StatisticScreenEndProps {
   passedMoviesFromPrevPhase?: Record<number, Movie>;
   nickname: string;
   saveResults: boolean;
@@ -61,7 +61,7 @@ export const sortGroupedMovies = (
   );
 };
 
-export const StatisticPhase: React.FC<StatisticPhaseProps> = ({
+export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
   passedMoviesFromPrevPhase,
   nickname,
   saveResults,

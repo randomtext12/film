@@ -2,15 +2,15 @@ import { collection, getDocs } from "firebase/firestore";
 import { Movie } from "./movies";
 import { db } from "../firebaseConfig";
 import { useEffect, useState } from "react";
-import { groupMoviesByTitle, sortGroupedMovies } from "./statisticPhase";
+import { groupMoviesByTitle, sortGroupedMovies } from "./statisticScreenEnd";
 import { MainScreen } from "./mainScreen";
 
-interface StatisticScreenProps {
+interface StatisticScreenStartProps {
   statisticScreenOpened: boolean;
   setStatisticScreenOpened: (opened: boolean) => void;
 }
 
-export const StatisticScreen: React.FC<StatisticScreenProps> = ({
+export const StatisticScreenStart: React.FC<StatisticScreenStartProps> = ({
   statisticScreenOpened,
   setStatisticScreenOpened,
 }) => {
@@ -43,8 +43,6 @@ export const StatisticScreen: React.FC<StatisticScreenProps> = ({
       setSortedMovies(sorted);
     }
   }, [movies]);
-
-  console.log("sortedMovies", sortedMovies);
 
   return statisticScreenOpened ? (
     <div
