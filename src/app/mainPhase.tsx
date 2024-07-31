@@ -296,7 +296,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: `repeat(4, 1fr)`,
+          gridTemplateColumns: `repeat(${numberOfKeysToRandom}, 1fr)`,
           gap: "10px",
           padding: "20px",
           height: "calc(100% - 88px)",
