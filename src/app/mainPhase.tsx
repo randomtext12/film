@@ -223,7 +223,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           setRound((prev) => prev + 1);
           setSelectedMovieId(null);
         }
-      }, 5);
+      }, 500);
     }
   };
 

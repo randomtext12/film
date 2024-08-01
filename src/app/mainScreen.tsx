@@ -81,7 +81,7 @@ export const MainScreen: React.FC = () => {
             marginBottom: "20px",
           }}
         />
-        <div
+        {/* <div
           style={{
             display: "flex",
             flexDirection: "row",
@@ -115,7 +115,7 @@ export const MainScreen: React.FC = () => {
             )}
           </div>
           <div>Записать мой результат</div>
-        </div>
+        </div> */}
       </div>
       <div
         style={{

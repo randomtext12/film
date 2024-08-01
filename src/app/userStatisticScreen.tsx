@@ -54,9 +54,11 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
             backgroundColor: "#f0f0f0",
             fontSize: "25px",
             border: "1px solid black",
+            paddingBottom: "5px",
+            paddingTop: "5px",
           }}
         >
-          Ваш рейтинг
+          Ваш рейтинг ({nickname})
         </div>
         <div
           style={{
@@ -127,7 +129,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
               style={{
                 display: "flex",
                 width: "11%",
-                height: "100px",
+                height: "60px",
                 justifyContent: "center",
                 alignItems: "center",
                 fontSize: "25px",
@@ -140,7 +142,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
               style={{
                 display: "flex",
                 width: "80%",
-                height: "100px",
+                height: "60px",
                 justifyContent: "center",
                 alignItems: "center",
                 fontSize: "25px",
@@ -155,7 +157,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
               style={{
                 display: "flex",
                 width: "9%",
-                height: "100px",
+                height: "60px",
                 justifyContent: "center",
                 fontSize: "25px",
                 border: "1px solid black",

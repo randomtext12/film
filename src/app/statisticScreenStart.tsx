@@ -172,7 +172,7 @@ export const StatisticScreenStart: React.FC<StatisticScreenStartProps> = ({
             style={{
               display: "flex",
               width: "11%",
-              height: "100px",
+              height: "80px",
               justifyContent: "center",
               alignItems: "center",
               fontSize: "25px",
@@ -185,7 +185,7 @@ export const StatisticScreenStart: React.FC<StatisticScreenStartProps> = ({
             style={{
               display: "flex",
               width: "80%",
-              height: "100px",
+              height: "80px",
               justifyContent: "center",
               alignItems: "center",
               fontSize: "25px",
@@ -200,7 +200,7 @@ export const StatisticScreenStart: React.FC<StatisticScreenStartProps> = ({
             style={{
               display: "flex",
               width: "9%",
-              height: "100px",
+              height: "80px",
               justifyContent: "center",
               fontSize: "25px",
               border: "1px solid black",

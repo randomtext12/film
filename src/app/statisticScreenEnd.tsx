@@ -143,6 +143,8 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
           backgroundColor: "#f0f0f0",
           fontSize: "25px",
           border: "1px solid black",
+          paddingBottom: "5px",
+          paddingTop: "5px",
         }}
       >
         Пользовательский рейтинг
@@ -216,7 +218,7 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
             style={{
               display: "flex",
               width: "11%",
-              height: "100px",
+              height: "60px",
               justifyContent: "center",
               alignItems: "center",
               fontSize: "25px",
@@ -229,7 +231,7 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
             style={{
               display: "flex",
               width: "80%",
-              height: "100px",
+              height: "60px",
               justifyContent: "center",
               alignItems: "center",
               fontSize: "25px",
@@ -244,7 +246,7 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
             style={{
               display: "flex",
               width: "9%",
-              height: "100px",
+              height: "60px",
               justifyContent: "center",
               fontSize: "25px",
               border: "1px solid black",
