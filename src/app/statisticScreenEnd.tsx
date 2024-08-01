@@ -114,8 +114,8 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
   };
 
   useEffect(() => {
-    addDataToFirestore();
     fetchDataFromFirestore();
+    addDataToFirestore();
   }, []);
 
   useEffect(() => {

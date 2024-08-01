@@ -76,7 +76,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
           <div
             style={{
               display: "flex",
-              width: "11%",
+              width: "12%",
               paddingTop: "10px",
               paddingBottom: "10px",
               justifyContent: "center",
@@ -89,7 +89,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
           <div
             style={{
               display: "flex",
-              width: "80%",
+              width: "79%",
               paddingTop: "10px",
               paddingBottom: "10px",
               justifyContent: "center",
@@ -128,7 +128,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
             <div
               style={{
                 display: "flex",
-                width: "11%",
+                width: "12%",
                 height: "60px",
                 justifyContent: "center",
                 alignItems: "center",
@@ -141,7 +141,7 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
             <div
               style={{
                 display: "flex",
-                width: "80%",
+                width: "79%",
                 height: "60px",
                 justifyContent: "center",
                 alignItems: "center",

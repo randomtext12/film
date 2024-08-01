@@ -32,6 +32,9 @@ export const StatisticScreenStart: React.FC<StatisticScreenStartProps> = ({
     }
   };
 
+  console.log("moviesData", movies);
+  console.log("sorted", sortedMovies);
+
   useEffect(() => {
     fetchDataFromFirestore();
   }, []);
