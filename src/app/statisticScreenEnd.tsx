@@ -82,13 +82,13 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
       const collectionRef = collection(db, "movies");
 
       try {
-        const snapshot = await getDocs(
-          query(collectionRef, where("nickname", "==", nickname))
-        );
-        if (!snapshot.empty) {
-          console.log("Объекты с этим никнеймом уже существуют в базе данных");
-          return;
-        }
+        // const snapshot = await getDocs(
+        //   query(collectionRef, where("nickname", "==", nickname))
+        // );
+        // if (!snapshot.empty) {
+        //   console.log("Объекты с этим никнеймом уже существуют в базе данных");
+        //   return;
+        // }
 
         await addDoc(collectionRef, { ...passedMoviesFromPrevPhase, nickname });
         console.log("Объект добавлен в базу данных");
