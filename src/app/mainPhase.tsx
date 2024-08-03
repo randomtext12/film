@@ -33,6 +33,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
   const [savingEnabled, setSavingEnabled] = useState<boolean>(true);
   const [savingStarted, setSavingStarted] = useState<boolean>(false);
   const [configUpdated, setConfigUpdated] = useState<boolean>(false);
+  const [hoveredMovieId, setHoveredMovieId] = useState<number>(0);
 
   useEffect(() => {
     if (stage === 1) {
@@ -297,14 +298,18 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           <div
             key={key}
             onClick={() => handleMovieSelection(Number(key))}
+            onMouseEnter={() => setHoveredMovieId(Number(key))}
+            onMouseLeave={() => setHoveredMovieId(0)}
             style={{
               width: "100%",
               minHeight: "400px",
               cursor: selectedMovieId ? "auto" : "pointer",
-              border: "2px solid black",
+              border: "2px solid",
+              borderColor: "#000000",
               borderRadius: "5px",
               textAlign: "center",
-              backgroundColor: "#f0f0f0",
+              backgroundColor:
+                hoveredMovieId === Number(key) ? "#cccccc" : "#ffffff",
               opacity: selectedMovieId === Number(key) ? 0 : 1,
               transition: "opacity 0.85s, background-color 1s",
             }}
@@ -337,7 +342,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
       }}
     >
       <div
-        style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
+        style={{ marginBottom: "10px", fontSize: "18px", textAlign: "center" }}
       >
         Раунд завершён! Вам нужно выбрать {countOfFilmsToSave}{" "}
         {countOfFilmsToSave > 4
@@ -346,6 +351,11 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           ? "фильма"
           : "фильм"}
         , которые вы спасете(они перейдут в следующий раунд):
+      </div>
+      <div
+        style={{ marginBottom: "20px", fontSize: "18px", textAlign: "center" }}
+      >
+        Выбрано {savedCount}/{countOfFilmsToSave}
       </div>
       <div
         style={{
@@ -378,6 +388,8 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           .map(([key, movie]) => (
             <div
               key={key}
+              onMouseEnter={() => setHoveredMovieId(Number(key))}
+              onMouseLeave={() => setHoveredMovieId(0)}
               onClick={() => handleChooseSavedMovies(Number(key))}
               style={{
                 display: "flex",
@@ -393,6 +405,8 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
                     : "default",
                 backgroundColor: savedMovies[Number(key)]
                   ? "#47d37d"
+                  : hoveredMovieId === Number(key)
+                  ? "#cccccc"
                   : "#f0f0f0",
                 border: "2px solid black",
                 borderRadius: "5px",
