@@ -220,7 +220,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({ nickname }) => {
           setRound((prev) => prev + 1);
           setSelectedMovieId(null);
         }
-      }, 5);
+      }, 500);
     }
   };
 
