@@ -5,13 +5,11 @@ import { StatisticScreenEnd } from "./statisticScreenEnd";
 interface UserStatisticScreenProps {
   passedMoviesFromPrevPhase?: Record<number, Movie>;
   nickname: string;
-  saveResults: boolean;
 }
 
 export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
   passedMoviesFromPrevPhase,
   nickname,
-  saveResults,
 }) => {
   const [availableMovies, setAvailableMovies] = useState<Record<number, Movie>>(
     { ...passedMoviesFromPrevPhase }
@@ -167,7 +165,6 @@ export const UserStatisticScreen: React.FC<UserStatisticScreenProps> = ({
         ))}
       </div>
       <StatisticScreenEnd
-        saveResults={saveResults}
         nickname={nickname}
         passedMoviesFromPrevPhase={availableMovies}
       />

@@ -5,16 +5,13 @@ export const MainScreen: React.FC = () => {
   const [testStarted, setTestStarted] = useState<boolean>(false);
   const [statisticScreenOpened, setStatisticScreenOpened] =
     useState<boolean>(false);
-  const [checkbox, setCheckbox] = useState<boolean>(true);
   const [inputValue, setInputValue] = useState<string>("");
   const startTest = () => {
     if (inputValue !== "") {
       setTestStarted(true);
     }
   };
-  const handleCheckbox = () => {
-    setCheckbox((prev) => !prev);
-  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
@@ -26,7 +23,7 @@ export const MainScreen: React.FC = () => {
     }
   };
   return testStarted ? (
-    <MainPhase saveResults={checkbox} nickname={inputValue} />
+    <MainPhase nickname={inputValue} />
   ) : statisticScreenOpened ? (
     <StatisticScreenStart
       statisticScreenOpened={statisticScreenOpened}

@@ -6,7 +6,6 @@ import { db } from "../firebaseConfig";
 interface StatisticScreenEndProps {
   passedMoviesFromPrevPhase?: Record<number, Movie>;
   nickname: string;
-  saveResults: boolean;
 }
 
 export const getAveragePlace = (place: string): number => {
@@ -64,37 +63,34 @@ export const sortGroupedMovies = (
 export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
   passedMoviesFromPrevPhase,
   nickname,
-  saveResults,
 }) => {
   const [movies, setMovies] = useState<Record<number, Movie>[]>([]);
   const [sortedMovies, setSortedMovies] = useState<Movie[]>([]);
 
   const addDataToFirestore = async () => {
-    if (saveResults) {
-      if (
-        !passedMoviesFromPrevPhase ||
-        Object.keys(passedMoviesFromPrevPhase).length === 0
-      ) {
-        console.log("Нет данных для добавления");
-        return;
-      }
+    if (
+      !passedMoviesFromPrevPhase ||
+      Object.keys(passedMoviesFromPrevPhase).length === 0
+    ) {
+      console.log("Нет данных для добавления");
+      return;
+    }
 
-      const collectionRef = collection(db, "movies");
+    const collectionRef = collection(db, "movies");
 
-      try {
-        // const snapshot = await getDocs(
-        //   query(collectionRef, where("nickname", "==", nickname))
-        // );
-        // if (!snapshot.empty) {
-        //   console.log("Объекты с этим никнеймом уже существуют в базе данных");
-        //   return;
-        // }
+    try {
+      // const snapshot = await getDocs(
+      //   query(collectionRef, where("nickname", "==", nickname))
+      // );
+      // if (!snapshot.empty) {
+      //   console.log("Объекты с этим никнеймом уже существуют в базе данных");
+      //   return;
+      // }
 
-        await addDoc(collectionRef, { ...passedMoviesFromPrevPhase, nickname });
-        console.log("Объект добавлен в базу данных");
-      } catch (e) {
-        console.error("Ошибка при добавлении объекта в базу данных: ", e);
-      }
+      await addDoc(collectionRef, { ...passedMoviesFromPrevPhase, nickname });
+      console.log("Объект добавлен в базу данных");
+    } catch (e) {
+      console.error("Ошибка при добавлении объекта в базу данных: ", e);
     }
   };
 
@@ -114,8 +110,12 @@ export const StatisticScreenEnd: React.FC<StatisticScreenEndProps> = ({
   };
 
   useEffect(() => {
-    fetchDataFromFirestore();
-    addDataToFirestore();
+    const saveAndFetchData = async () => {
+      await fetchDataFromFirestore();
+      await addDataToFirestore();
+    };
+
+    saveAndFetchData();
   }, []);
 
   useEffect(() => {

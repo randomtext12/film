@@ -4,13 +4,9 @@ import { UserStatisticScreen } from "./userStatisticScreen";
 
 interface MainPhaseProps {
   nickname: string;
-  saveResults: boolean;
 }
 
-export const MainPhase: React.FC<MainPhaseProps> = ({
-  nickname,
-  saveResults,
-}) => {
+export const MainPhase: React.FC<MainPhaseProps> = ({ nickname }) => {
   const [availableMovies, setAvailableMovies] = useState<Record<number, Movie>>(
     { ...MOVIES }
   );
@@ -224,7 +220,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
           setRound((prev) => prev + 1);
           setSelectedMovieId(null);
         }
-      }, 500);
+      }, 5);
     }
   };
 
@@ -273,7 +269,6 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
 
   return stageEnded ? (
     <UserStatisticScreen
-      saveResults={saveResults}
       nickname={nickname}
       passedMoviesFromPrevPhase={passedMovies}
     />
@@ -311,7 +306,7 @@ export const MainPhase: React.FC<MainPhaseProps> = ({
               backgroundColor:
                 hoveredMovieId === Number(key) ? "#cccccc" : "#ffffff",
               opacity: selectedMovieId === Number(key) ? 0 : 1,
-              transition: "opacity 0.85s, background-color 1s",
+              transition: "opacity 0.85s, background-color 0.1s",
             }}
           >
             <img
